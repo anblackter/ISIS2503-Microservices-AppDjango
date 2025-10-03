@@ -46,7 +46,7 @@ echo "Docker installation complete."
 echo "Clone Repository..."
 
 cd $APP_DIR
-git clone https://github.com/ISIS2503/ISIS2503-Microservices-AppDjango.git
+git clone https://github.com/anblackter/ISIS2503-Microservices-AppDjango.git
 cd $APP_DIR/ISIS2503-Microservices-AppDjango/measurements
 
 sudo docker build -t measurements-microservice .
