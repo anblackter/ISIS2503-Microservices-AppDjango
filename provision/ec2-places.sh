@@ -16,6 +16,13 @@ sudo apt install -y \
     lsb-release
 echo "Package update complete."
 
+echo "Install Python 3.12..."
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:deadsnakes/ppa -y
+sudo apt-get update
+sudo apt install python3.12 -y
+sudo curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12
+
 # Install AWS CLI v2
 echo "Installing AWS CLI..."
 sudo apt-get install -y unzip
@@ -47,12 +54,10 @@ echo "Clone Repository..."
 
 cd $APP_DIR
 git clone https://github.com/anblackter/ISIS2503-Microservices-AppDjango.git
-cd $APP_DIR/ISIS2503-Microservices-AppDjango
+cd $APP_DIR/ISIS2503-Microservices-AppDjango/places
 
-docker network create kong-net
-docker run -d --name kong --network=kong-net --restart=always \
-  -v "$(pwd):/kong/declarative/" -e "KONG_DATABASE=off" \
-  -e "KONG_DECLARATIVE_CONFIG=/kong/declarative/kong.yaml" \
-  -p 8000:8000 kong/kong-gateway
+sudo python3.12 -m pip install -r requirements.txt
+
+sudo python3.12 main.py
 
 echo "User data script execution finished."

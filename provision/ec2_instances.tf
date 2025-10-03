@@ -118,6 +118,53 @@ resource "aws_instance" "kong" {
   }
 }
 
+resource "aws_instance" "places_db" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.ec2_instance_type
+
+  primary_network_interface {
+    network_interface_id = aws_network_interface.places_db_ni.id
+  }
+
+  root_block_device {
+    volume_size = 30
+    volume_type = "gp3"
+    delete_on_termination = true
+  }
+
+  user_data = filebase64("${path.module}/ec2-places-db.sh")
+
+  key_name = var.ssh_key_name
+
+  tags = {
+    Name = "PlacesDBEC2Instance"
+  }
+}
+
+
+resource "aws_instance" "places_ms" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.ec2_instance_type
+
+  primary_network_interface {
+    network_interface_id = aws_network_interface.places_ms_ni.id
+  }
+
+  root_block_device {
+    volume_size = 30
+    volume_type = "gp3"
+    delete_on_termination = true
+  }
+
+  user_data = filebase64("${path.module}/ec2-places.sh")
+
+  key_name = var.ssh_key_name
+
+  tags = {
+    Name = "PlacesMSEC2Instance"
+  }
+}
+
 # Fetch the latest Ubuntu AMI ID for the specified region
 data "aws_ami" "ubuntu" {
   most_recent = true

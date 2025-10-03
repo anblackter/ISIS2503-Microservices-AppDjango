@@ -135,3 +135,5 @@ STATICFILES_DIRS = (
 
 PATH_API_GATEWAY = "http://" + os.environ.get("KONG_HOST", "10.128.0.81") + ":" + os.environ.get("KONG_PORT", "8000")
 PATH_VAR = PATH_API_GATEWAY + "/variables"
+
+PATH_PLACES = PATH_API_GATEWAY + "/places"

@@ -169,6 +169,26 @@ resource "aws_network_interface" "measurements_ms_ni" {
   }
 }
 
+resource "aws_network_interface" "places_db_ni" {
+  subnet_id   = aws_subnet.static_subnet.id
+  private_ips = [var.places_db_ip]
+  security_groups = [aws_security_group.security_group.id]
+
+  tags = {
+    Name = "places_db_interface"
+  }
+}
+
+resource "aws_network_interface" "places_ms_ni" {
+  subnet_id   = aws_subnet.static_subnet.id
+  private_ips = [var.places_ms_ip]
+  security_groups = [aws_security_group.security_group.id]
+
+  tags = {
+    Name = "places_ms_interface"
+  }
+}
+
 
 
 

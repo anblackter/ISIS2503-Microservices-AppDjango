@@ -8,6 +8,11 @@ output "measurements_ms_host" {
   value       = aws_instance.measurements_ms.public_ip
 }
 
+output "places_ms_host" {
+  description = "Places MS Public IP"
+  value       = aws_instance.places_ms.public_ip
+}
+
 output "kong_host" {
   description = "Kong Public IP"
   value       = aws_instance.kong.public_ip

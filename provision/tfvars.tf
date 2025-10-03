@@ -47,6 +47,18 @@ variable "measurements_ms_ip" {
 
 }
 
+variable "places_db_ip" {
+  type = string
+  default = "10.128.0.86"
+
+}
+
+variable "places_ms_ip" {
+  type = string
+  default = "10.128.0.87"
+
+}
+
 # EC2 Variable
 variable "ec2_instance_type" {
   type    = string
