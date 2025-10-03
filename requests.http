@@ -1,0 +1,2 @@
+### GET Measurements
+GET http://18.234.23.18:8000/measurements/
