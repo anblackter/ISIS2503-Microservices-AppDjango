@@ -51,12 +51,6 @@ resource "aws_lambda_permission" "allow_eventbridge" {
 }
 
 # Places Lambda
-resource "aws_cloudwatch_log_group" "places" {
-  name              = "/aws/lambda/places_api_consumption"
-  retention_in_days = 30
-}
-
-
 resource "aws_lambda_function" "places_api_consumption" {
   # disabled for academical reasons
   function_name = "places_api_consumption"
